@@ -1,3 +1,3 @@
-mkdir day%1
+mkdir Day%1
 
-curl --output day%1\input.txt https://adventofcode.com/2019/day/%1/input --cookie "session=%AoCcookie%"
+curl --output Day%1\Day%1.txt https://adventofcode.com/2019/day/%1/input --cookie "session=%AoCcookie%"

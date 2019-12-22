@@ -8,7 +8,7 @@
 #include <iterator>
 #include <memory>
 
-namespace aoc2018
+namespace aoc
 {
 
 	inline std::unique_ptr<std::istream> OpenInputFile(const std::string fileName)
