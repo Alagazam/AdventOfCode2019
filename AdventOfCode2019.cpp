@@ -2,12 +2,14 @@
 //
 
 //#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <iosfwd>
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
 #include <iostream>
 #include <cstdint>
 #include "inputReader.h"
 #include "Day01/Day01.h"
+#include "Day02/Day02.h"
 
 int main(int argc, char** argv) {
     doctest::Context context;

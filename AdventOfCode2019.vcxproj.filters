@@ -5,9 +5,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inputReader.h" />
-    <ClInclude Include="Day01\Day01.h" />
+    <ClInclude Include="Day01\Day01.h">
+      <Filter>Day01</Filter>
+    </ClInclude>
+    <ClInclude Include="Day02\Day02.h">
+      <Filter>Day02</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="Day01\day01.txt" />
+    <Filter Include="Day01">
+      <UniqueIdentifier>{f85ff722-36fe-4dc9-97f8-6755b3d94016}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day02">
+      <UniqueIdentifier>{735b665f-1af7-4836-bcc1-0d11255d2a5e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="Day01\Day01.txt">
+      <Filter>Day01</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="Day02\Day02.txt">
+      <Filter>Day02</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Test.txt" />
   </ItemGroup>
 </Project>
