@@ -1,4 +1,5 @@
 #pragma once
+#include "../inputReader.h"
 namespace Day01
 {
     int64_t CalcFuel(int64_t mass)

@@ -1,15 +1,15 @@
+// This is an independent project of an individual developer. Dear PVS-Studio, please check it.
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
+//
 // AdventOfCode2019.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 //#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include <iosfwd>
 #define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
-#include <iostream>
-#include <cstdint>
-#include "inputReader.h"
 #include "Day01/Day01.h"
 #include "Day02/Day02.h"
+#include "Day03/Day03.h"
 
 int main(int argc, char** argv) {
     doctest::Context context;
@@ -34,8 +34,9 @@ int main(int argc, char** argv) {
     int client_stuff_return_code = 0;
 
     // your program - if the testing framework is integrated in your production code
-    std::cout << "Day 01 A=" << Day01::Solve_A() << " B=" << Day01::Solve_B() << "\n";
-    std::cout << "Day 02 A=" << Day02::Solve_A() << " B=" << Day02::Solve_B() << "\n";
+    //std::cout << "Day 01 A=" << Day01::Solve_A() << " B=" << Day01::Solve_B() << "\n";
+    //std::cout << "Day 02 A=" << Day02::Solve_A() << " B=" << Day02::Solve_B() << "\n";
+    std::cout << "Day 03 A=" << Day03::Solve_A() << " B=" << Day03::Solve_B() << "\n";
 
     return res + client_stuff_return_code; // the result from doctest is propagated here as well
 }

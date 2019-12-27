@@ -1,4 +1,5 @@
 #pragma once
+#include "../inputReader.h"
 #include <sstream>
 namespace Day02
 {

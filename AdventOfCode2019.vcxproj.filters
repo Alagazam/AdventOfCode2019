@@ -11,6 +11,9 @@
     <ClInclude Include="Day02\Day02.h">
       <Filter>Day02</Filter>
     </ClInclude>
+    <ClInclude Include="Day03\Day03.h">
+      <Filter>Day03</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Day01">
@@ -18,6 +21,9 @@
     </Filter>
     <Filter Include="Day02">
       <UniqueIdentifier>{735b665f-1af7-4836-bcc1-0d11255d2a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day03">
+      <UniqueIdentifier>{ac526cfb-dc91-4078-a8b7-63571b37d786}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,5 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="Test.txt" />
+    <Text Include="Day03\Day03.txt">
+      <Filter>Day03</Filter>
+    </Text>
   </ItemGroup>
 </Project>
