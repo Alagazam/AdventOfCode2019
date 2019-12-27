@@ -35,6 +35,7 @@ int main(int argc, char** argv) {
 
     // your program - if the testing framework is integrated in your production code
     std::cout << "Day 01 A=" << Day01::Solve_A() << " B=" << Day01::Solve_B() << "\n";
+    std::cout << "Day 02 A=" << Day02::Solve_A() << " B=" << Day02::Solve_B() << "\n";
 
     return res + client_stuff_return_code; // the result from doctest is propagated here as well
 }
