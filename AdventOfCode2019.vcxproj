@@ -160,6 +160,7 @@
     <ClInclude Include="Day03\Day03.h" />
     <ClInclude Include="Day04\Day04.h" />
     <ClInclude Include="inputReader.h" />
+    <ClInclude Include="IntcodeComputer.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Day01\Day01.txt">

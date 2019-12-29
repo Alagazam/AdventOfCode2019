@@ -17,6 +17,7 @@
     <ClInclude Include="Day04\Day04.h">
       <Filter>Day04</Filter>
     </ClInclude>
+    <ClInclude Include="IntcodeComputer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Day01">
