@@ -17,8 +17,10 @@ namespace Day05
 	int64_t Solve_B()
 	{
 		auto	file = aoc::OpenInputFile("Day05\\Day05.txt");
-		const auto	input = aoc::ReadInputInt(*file);
+		auto	input = aoc::ReadInputInt(*file);
 
-		return 0;
+		intcode::program_output_ptr output(new intcode::program_output);
+		intcode::execute(input[0], 5, output);
+		return output->back();
 	}
 }

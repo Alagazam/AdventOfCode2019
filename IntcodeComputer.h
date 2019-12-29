@@ -82,7 +82,7 @@ namespace intcode
 				auto val1{ getValue(program, *(pc + 1), mode1) };
 				auto val2{ getValue(program, *(pc + 2), mode2) };
 				auto res = val1 + val2;
-				program[getValue(program, *(pc + 3), mode::immediate)] = res;
+				setValue(program, *(pc + 3), res);
 				pc += 4;
 				break;
 			}
@@ -92,7 +92,7 @@ namespace intcode
 				auto val1{ getValue(program, *(pc + 1), mode1) };
 				auto val2{ getValue(program, *(pc + 2), mode2) };
 				auto res = val1 * val2;
-				program[getValue(program, *(pc + 3), mode::immediate)] = res;
+				setValue(program, *(pc + 3), res);
 				pc += 4;
 				break;
 			}
@@ -100,7 +100,7 @@ namespace intcode
 				  // For example, the instruction 3, 50 would take an input value and store it at address 50.
 			case 3: {
 				auto addr = *(pc + 1);
-				program[getValue(program, addr, mode::immediate)] = input;
+				setValue(program, addr, input);
 				pc += 2;
 				break;
 			}
@@ -114,6 +114,59 @@ namespace intcode
 				break;
 			}
 
+				// Opcode 5 is jump-if-true: if the first parameter is non-zero, 
+				// it sets the instruction pointer to the value from the second parameter.Otherwise, it does nothing.
+			case 5: {
+				auto addr = *(pc + 1);
+				auto val = getValue(program, addr, mode1);
+				if (val != 0)
+				{
+					pc = begin(program) + getValue(program, *(pc + 2), mode2);
+				}
+				else
+				{
+					pc += 3;
+				}
+				break;
+			}
+				  
+				// Opcode 6 is jump-if-false: if the first parameter is zero, 
+				// it sets the instruction pointer to the value from the second parameter.Otherwise, it does nothing.
+			case 6: {
+				auto addr = *(pc + 1);
+				auto val = getValue(program, addr, mode1);
+				if (val == 0)
+				{
+					pc = begin(program) + getValue(program, *(pc + 2), mode2);
+				}
+				else
+				{
+					pc += 3;
+				}
+				break;
+			}
+				// Opcode 7 is less than: if the first parameter is less than the second parameter,
+				// it stores 1 in the position given by the third parameter.Otherwise, it stores 0.
+			case 7: {
+				auto val1 = getValue(program, *(pc + 1), mode1);
+				auto val2 = getValue(program, *(pc + 2), mode2);
+				setValue(program, *(pc + 3), (val1 < val2) ? 1 : 0);
+				pc += 4;
+				break;
+			}
+
+				// Opcode 8 is equals: if the first parameter is equal to the second parameter,
+				//it stores 1 in the position given by the third parameter.Otherwise, it stores 0.
+			case 8: {
+				auto val1 = getValue(program, *(pc + 1), mode1);
+				auto val2 = getValue(program, *(pc + 2), mode2);
+				setValue(program, *(pc + 3), (val1 == val2) ? 1 : 0);
+				pc += 4;
+				break;
+			}
+
+			default:
+				return -1;
 			}
 		}
 		return program[0];
@@ -198,5 +251,126 @@ namespace intcode
 
 		execute(program);
 		CHECK(program == aoc::rowContentInt{ 1101,100,-1,4,99 });
+	}
+
+
+	//3,9,8,9,10,9,4,9,99,-1,8 - Using position mode, consider whether the input is equal to 8; output 1 (if it is) or 0 (if it is not).
+	TEST_CASE("equal 8 position") {
+		aoc::rowContentInt	program{ 3,9,8,9,10,9,4,9,99,-1,8 };
+		program_output_ptr output(new program_output);
+		execute(program, 8, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1);
+	}
+	TEST_CASE("not equal 8 position") {
+		aoc::rowContentInt	program{ 3,9,8,9,10,9,4,9,99,-1,8 };
+		program_output_ptr output(new program_output);
+		execute(program, 5, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 0);
+	}
+	//3,9,7,9,10,9,4,9,99,-1,8 - Using position mode, consider whether the input is less than 8; output 1 (if it is) or 0 (if it is not).
+	TEST_CASE("less than 8 position") {
+		aoc::rowContentInt	program{ 3,9,7,9,10,9,4,9,99,-1,8 };
+		program_output_ptr output(new program_output);
+		execute(program, 7, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1);
+	}
+	TEST_CASE("not less than 8 position") {
+		aoc::rowContentInt	program{ 3,9,7,9,10,9,4,9,99,-1,8 };
+		program_output_ptr output(new program_output);
+		execute(program, 8, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 0);
+	}
+	//3,3,1108,-1,8,3,4,3,99 - Using immediate mode, consider whether the input is equal to 8; output 1 (if it is) or 0 (if it is not).
+	TEST_CASE("equal 8 immediate") {
+		aoc::rowContentInt	program{ 3,3,1108,-1,8,3,4,3,99 };
+		program_output_ptr output(new program_output);
+		execute(program, 8, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1);
+	}
+	TEST_CASE("not equal 8 immediate") {
+		aoc::rowContentInt	program{ 3,3,1108,-1,8,3,4,3,99 };
+		program_output_ptr output(new program_output);
+		execute(program, 5, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 0);
+	}
+	//3,3,1107,-1,8,3,4,3,99 - Using immediate mode, consider whether the input is less than 8; output 1 (if it is) or 0 (if it is not).
+	TEST_CASE("less than 8 immediate") {
+		aoc::rowContentInt	program{ 3,3,1107,-1,8,3,4,3,99 };
+		program_output_ptr output(new program_output);
+		execute(program, 7, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1);
+	}
+	TEST_CASE("not less than 8 immediate") {
+		aoc::rowContentInt	program{ 3,3,1107,-1,8,3,4,3,99 };
+		program_output_ptr output(new program_output);
+		execute(program, 8, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 0);
+	}
+
+	//Here are some jump tests that take an input, then output 0 if the input was zero or 1 if the input was non-zero:
+	//3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9 (using position mode)
+	TEST_CASE("jump test position zero") {
+		aoc::rowContentInt	program{ 3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9 };
+		program_output_ptr output(new program_output);
+		execute(program, 0, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 0);
+	}
+	TEST_CASE("jump test position zero") {
+		aoc::rowContentInt	program{ 3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9 };
+		program_output_ptr output(new program_output);
+		execute(program, 5, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1);
+	}
+	//3,3,1105,-1,9,1101,0,0,12,4,12,99,1 (using immediate mode)
+	TEST_CASE("jump test immediate zero") {
+		aoc::rowContentInt	program{ 3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9 };
+		program_output_ptr output(new program_output);
+		execute(program, 0, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 0);
+	}
+	TEST_CASE("jump test immediate zero") {
+		aoc::rowContentInt	program{ 3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9 };
+		program_output_ptr output(new program_output);
+		execute(program, 5, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1);
+	}
+
+	aoc::rowContentInt	bigTestCompre{ 3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,
+	1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
+	999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99 };
+	//The above example program uses an input instruction to ask for a single number. 
+	//The program will then output 999 if the input value is below 8, 
+	//output 1000 if the input value is equal to 8, 
+	//or output 1001 if the input value is greater than 8.
+	TEST_CASE("big test") {
+		aoc::rowContentInt	program = bigTestCompre;
+		program_output_ptr output(new program_output);
+		execute(program, 5, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 999);
+
+		program = bigTestCompre;
+		output->clear();
+		execute(program, 8, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1000);
+
+		program = bigTestCompre;
+		output->clear();
+		execute(program, 9, output);
+		REQUIRE(output->size() > 0);
+		CHECK(output->front() == 1001);
 	}
 }
