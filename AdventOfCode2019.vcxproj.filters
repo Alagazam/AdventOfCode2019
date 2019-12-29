@@ -14,6 +14,9 @@
     <ClInclude Include="Day03\Day03.h">
       <Filter>Day03</Filter>
     </ClInclude>
+    <ClInclude Include="Day04\Day04.h">
+      <Filter>Day04</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Day01">
@@ -24,6 +27,9 @@
     </Filter>
     <Filter Include="Day03">
       <UniqueIdentifier>{ac526cfb-dc91-4078-a8b7-63571b37d786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Day04">
+      <UniqueIdentifier>{f66cb1d2-e788-4069-84ce-18254d4f457e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
