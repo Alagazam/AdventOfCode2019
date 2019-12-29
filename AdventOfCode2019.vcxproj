@@ -158,6 +158,7 @@
     <ClInclude Include="Day01\Day01.h" />
     <ClInclude Include="Day02\Day02.h" />
     <ClInclude Include="Day03\Day03.h" />
+    <ClInclude Include="Day04\Day04.h" />
     <ClInclude Include="inputReader.h" />
   </ItemGroup>
   <ItemGroup>
