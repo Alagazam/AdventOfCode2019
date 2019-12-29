@@ -18,6 +18,9 @@
       <Filter>Day04</Filter>
     </ClInclude>
     <ClInclude Include="IntcodeComputer.h" />
+    <ClInclude Include="Day05\Day05.h">
+      <Filter>Day05</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Day01">
@@ -32,6 +35,9 @@
     <Filter Include="Day04">
       <UniqueIdentifier>{f66cb1d2-e788-4069-84ce-18254d4f457e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Day05">
+      <UniqueIdentifier>{69943d7c-7b54-4289-b7ff-eb757de152db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="Day01\Day01.txt">
@@ -45,6 +51,9 @@
     <Text Include="Test.txt" />
     <Text Include="Day03\Day03.txt">
       <Filter>Day03</Filter>
+    </Text>
+    <Text Include="Day05\Day05.txt">
+      <Filter>Day05</Filter>
     </Text>
   </ItemGroup>
 </Project>

@@ -11,6 +11,7 @@
 #include "Day02/Day02.h"
 #include "Day03/Day03.h"
 #include "Day04/Day04.h"
+#include "Day05/Day05.h"
 
 int main(int argc, char** argv) {
     doctest::Context context;
@@ -39,6 +40,7 @@ int main(int argc, char** argv) {
     //std::cout << "Day 02 A=" << Day02::Solve_A() << " B=" << Day02::Solve_B() << "\n";
     //std::cout << "Day 03 A=" << Day03::Solve_A() << " B=" << Day03::Solve_B() << "\n";
     //std::cout << "Day 04 A=" << Day04::Solve_A() << " B=" << Day04::Solve_B() << "\n";
+    std::cout << "Day 05 A=" << Day05::Solve_A() << " B=" << Day05::Solve_B() << "\n";
 
     return res + client_stuff_return_code; // the result from doctest is propagated here as well
 }
